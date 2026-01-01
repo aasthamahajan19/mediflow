@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediFlow | Full-Screen Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <aside class="sidebar">
+            <div class="logo">Medi<span>Flow</span></div>
+            <nav class="nav-menu">
+                <button onclick="showPage('today')" id="btn-today" class="active">
+                    <i>📅</i> Today's Schedule
+                </button>
+                <button onclick="showPage('add')" id="btn-add">
+                    <i>➕</i> Add New Medicine
+                </button>
+                <button onclick="showPage('history')" id="btn-history">
+                    <i>📜</i> Medical History
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Personal Health Tracker v2.0</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="user-profile">Welcome back, User</div>
+            </header>
+
+            <div class="content-body">
+                <div id="today" class="page active">
+                    <div class="grid-container" id="today-list">
+                        </div>
+                </div>
+
+                <div id="add" class="page">
+                    <div class="form-container">
+                        <div class="form-card">
+                            <h2>Add New Routine</h2>
+                            <div class="input-grid">
+                                <div class="input-field">
+                                    <label>Medicine Name</label>
+                                    <input type="text" id="medName" placeholder="e.g. Paracetamol">
+                                </div>
+                                <div class="input-field">
+                                    <label>Frequency</label>
+                                    <select id="medFreq">
+                                        <option>Once Daily</option>
+                                        <option>Twice Daily</option>
+                                        <option>Every 8 Hours</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label>Duration</label>
+                                    <div class="duration-row">
+                                        <input type="number" id="durVal" value="1" min="1">
+                                        <select id="durUnit">
+                                            <option value="days">Day(s)</option>
+                                            <option value="weeks">Week(s)</option>
+                                            <option value="months">Month(s)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="submit-btn" onclick="saveMedicine()">Confirm & Start</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="history" class="page">
+                    <div class="grid-container" id="history-list">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
