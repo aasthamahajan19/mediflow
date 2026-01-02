@@ -3,63 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediFlow | Full-Screen Dashboard</title>
+    <title>MediFlow | Medication Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="welcome-screen" class="welcome-overlay">
+        <div class="welcome-card">
+            <div class="logo">Medi<span>Flow</span></div>
+            <h1>Welcome to MediFlow</h1>
+            <p>Enter your name to access your profile. Existing users will be restored.</p>
+            <div class="field">
+                <input type="text" id="userNameInput" placeholder="Enter your full name">
+            </div>
+            <button class="confirm-btn" onclick="handleUserEntry()">login</button>
+        </div>
+    </div>
 
-    <div class="app-wrapper">
+    <div class="app-container" id="main-app" style="display: none;">
         <aside class="sidebar">
             <div class="logo">Medi<span>Flow</span></div>
             <nav class="nav-menu">
-                <button onclick="showPage('today')" id="btn-today" class="active">
-                    <i>📅</i> Today's Schedule
-                </button>
-                <button onclick="showPage('add')" id="btn-add">
-                    <i>➕</i> Add New Medicine
-                </button>
-                <button onclick="showPage('history')" id="btn-history">
-                    <i>📜</i> Medical History
-                </button>
+                <button onclick="showPage('today')" id="btn-today" class="active">📅 Today's Meds</button>
+                <button onclick="showPage('add')" id="btn-add">➕ Add Routine</button>
+                <button onclick="showPage('history')" id="btn-history">📜 History</button>
+                <button onclick="logout()" class="logout-btn" style="margin-top: auto; color: #e74c3c; border-top: 1px solid rgba(255,255,255,0.1);">🚪 Logout</button>
             </nav>
-            <div class="sidebar-footer">
-                <p>Personal Health Tracker v2.0</p>
-            </div>
         </aside>
 
         <main class="main-content">
-            <header class="top-bar">
-                <h1 id="page-title">Dashboard</h1>
-                <div class="user-profile">Welcome back, User</div>
+            <header class="header-bar">
+                <h2 id="view-title">Dashboard</h2>
+                <div class="user-meta">
+                    <span id="display-welcome" style="font-weight: bold; color: #3498db; font-size: 1.1rem;"></span>
+                    <div id="date-display"></div>
+                </div>
             </header>
 
-            <div class="content-body">
+            <div class="content-area">
                 <div id="today" class="page active">
-                    <div class="grid-container" id="today-list">
-                        </div>
+                    <div class="med-grid" id="today-list"></div>
                 </div>
 
                 <div id="add" class="page">
                     <div class="form-container">
-                        <div class="form-card">
+                        <div class="card form-card">
                             <h2>Add New Routine</h2>
                             <div class="input-grid">
-                                <div class="input-field">
+                                <div class="field">
                                     <label>Medicine Name</label>
                                     <input type="text" id="medName" placeholder="e.g. Paracetamol">
                                 </div>
-                                <div class="input-field">
-                                    <label>Frequency</label>
-                                    <select id="medFreq">
-                                        <option>Once Daily</option>
-                                        <option>Twice Daily</option>
-                                        <option>Every 8 Hours</option>
-                                    </select>
+                                <div class="field">
+                                    <label>Quantity</label>
+                                    <input type="text" id="medQty" placeholder="e.g. 1 Pill">
                                 </div>
-                                <div class="input-field">
+                                <div class="field">
                                     <label>Duration</label>
-                                    <div class="duration-row">
-                                        <input type="number" id="durVal" value="1" min="1">
+                                    <div class="parallel-row">
+                                        <input type="number" id="durVal" placeholder="0">
                                         <select id="durUnit">
                                             <option value="days">Day(s)</option>
                                             <option value="weeks">Week(s)</option>
@@ -67,20 +68,30 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="field">
+                                    <label>Frequency</label>
+                                    <select id="medFreq">
+                                        <option value="1">Once a Day</option>
+                                        <option value="1">Twice a Day</option>
+                                        <option value="1">Every 8 Hours</option>
+                                        <option value="2">Alternate Day</option>
+                                        <option value="3">After 3 Days</option>
+                                        <option value="7">After a Week</option>
+                                        <option value="30">After a Month</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button class="submit-btn" onclick="saveMedicine()">Confirm & Start</button>
+                            <button class="confirm-btn" onclick="saveMedicine()">Confirm & Start</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="history" class="page">
-                    <div class="grid-container" id="history-list">
-                        </div>
+                    <div class="med-grid" id="history-list"></div>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
